@@ -2,25 +2,23 @@ version: '3'
 services:
   waltz-mariadb:
     build:
-      context: .
+      context: mariadb/
       dockerfile: mariadb/Dockerfile
-    image: docker.artifactory.ai.cba/appinfra/mariadb:waltz-2
+    image: mariadb:waltz-2
     environment:
       - MYSQL_ROOT_PASSWORD=passwd
     ports:
       - "3306:3306"
   waltz-web:
     build:
-      context: .
+      context: waltz/
       dockerfile: waltz/Dockerfile
-    image: docker.artifactory.ai.cba/appinfra/waltz:jetty-withldap-2
+    image: waltz:jetty-withldap-2
     environment:
       - DB_HOST=waltz-mariadb
       - DB_USER=root
       - DB_PASSWD=passwd
-      - JAVA_KEYSTORE_PASS=passwd
     links:
       - "waltz-mariadb:waltz-mariadb"
     ports:
       - "8080:8080"
-      - "8443:8443"

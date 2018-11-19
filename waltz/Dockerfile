@@ -12,13 +12,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 USER jetty
 
-# Set up TLS for waltz.app.in.cba
-RUN java -jar /usr/local/jetty/start.jar --approve-all-licenses
-
-COPY waltz/wait-for-db.sh /home/jetty/.waltz/
-COPY waltz/waltz.properties /home/jetty/.waltz/
-COPY waltz/waltz-logback.xml /home/jetty/.waltz/
-COPY waltz/waltz-web.war /var/lib/jetty/webapps/root.war
+COPY wait-for-db.sh /home/jetty/.waltz/
+COPY waltz.properties /home/jetty/.waltz/
+COPY waltz-logback.xml /home/jetty/.waltz/
+COPY waltz-web.war /var/lib/jetty/webapps/root.war
 
 EXPOSE 8080/tcp
 
