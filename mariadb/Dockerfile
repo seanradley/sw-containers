@@ -1,5 +1,5 @@
-FROM mariadb:latest
+# Define your base container: mariadb:latest
 
-COPY waltz-backup-initialised.sql /tmp/
+# Copy the waltz-backup-initialised.sql file to the expected place
 
 CMD ["mysqld", "--init-file", "/tmp/waltz-backup-initialised.sql"]
