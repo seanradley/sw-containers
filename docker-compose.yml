@@ -3,7 +3,7 @@ services:
   waltz-mariadb:
     build:
       context: mariadb/
-      dockerfile: mariadb/Dockerfile
+      dockerfile: Dockerfile
     image: mariadb:waltz-2
     environment:
       - MYSQL_ROOT_PASSWORD=passwd
@@ -12,7 +12,7 @@ services:
   waltz-web:
     build:
       context: waltz/
-      dockerfile: waltz/Dockerfile
+      dockerfile: Dockerfile
     image: waltz:jetty-withldap-2
     environment:
       - DB_HOST=waltz-mariadb
